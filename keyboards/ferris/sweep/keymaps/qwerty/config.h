@@ -34,8 +34,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // Pick good defaults for enabling homerow modifiers
 #define TAPPING_TERM 200
-#define PERMISSIVE_HOLD
+// #define PERMISSIVE_HOLD
 #define QUICK_TAP_TERM 0
+
+// Chordal Hold: homerow mods only activate for opposite-hand chords
+#define CHORDAL_HOLD
+#define HOLD_ON_OTHER_KEY_PRESS
+
+// https://docs.qmk.fm/#/feature_caps_word
+#define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
 
 // Underglow configuration
 #ifdef RGBLIGHT_ENABLE
