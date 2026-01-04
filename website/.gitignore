@@ -1,0 +1,16 @@
+# Build output
+_site/
+
+# Generated SVG files (built from layout.yaml via scripts/generate-svgs.js)
+public/generated/
+
+# Dependencies
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+.DS_Store

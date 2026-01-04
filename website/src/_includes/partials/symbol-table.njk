@@ -1,0 +1,77 @@
+{# Symbol table component - displays all symbols grouped by category #}
+
+{% set categories = {
+  'letters': 'Letters (a-z, A-Z)',
+  'numbers': 'Numbers (0-9)',
+  'punctuation': 'Punctuation',
+  'common': 'Common Symbols',
+  'invisible': 'Invisible Characters',
+  'navigation': 'Navigation',
+  'commands': 'Common Commands',
+  'special': 'Special Keys',
+  'non-printing': 'Function Keys & Non-Printing',
+  'rare': 'Rare & Unicode Symbols'
+} %}
+
+{% for categoryKey, categoryName in categories %}
+  {# Filter symbols by this category #}
+  {% set categorySymbols = [] %}
+  {% for symbol in keymap.allSymbols %}
+    {% if symbol.category == categoryKey %}
+      {% set categorySymbols = (categorySymbols.push(symbol), categorySymbols) %}
+    {% endif %}
+  {% endfor %}
+
+  {% if categorySymbols.length > 0 %}
+    <div class="category-section">
+      <h4>{{ categoryName }}</h4>
+
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 80px;">Symbol</th>
+            <th style="width: 200px;">Description</th>
+            {% for realLayer in keymap.realLayers %}
+              <th>{{ realLayer.name }}</th>
+            {% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+          {% for symbol in categorySymbols %}
+            <tr>
+              <td class="symbol-char">
+                {% if symbol.symbol %}
+                  {{ symbol.symbol }}
+                {% else %}
+                  <span class="not-available">—</span>
+                {% endif %}
+              </td>
+              <td>{{ symbol.description }}</td>
+
+              {# Show how to access this symbol from each real layer #}
+              {% for realLayer in keymap.realLayers %}
+                <td>
+                  {% set accessMethods = symbol.accessMethods[realLayer.name] %}
+
+                  {% if accessMethods and accessMethods.length > 0 %}
+                    {% for method in accessMethods %}
+                      <div style="margin: 0.25rem 0;">
+                        <code>{{ method.notation }}</code>
+                      </div>
+                    {% endfor %}
+                  {% else %}
+                    <span class="not-available">—</span>
+                  {% endif %}
+                </td>
+              {% endfor %}
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <p style="color: var(--color-muted, #666); font-size: 0.9rem; margin-top: 0.5rem;">
+        {{ categorySymbols.length }} {{ 'symbol' if categorySymbols.length == 1 else 'symbols' }} in this category
+      </p>
+    </div>
+  {% endif %}
+{% endfor %}

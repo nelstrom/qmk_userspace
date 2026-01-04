@@ -1,0 +1,55 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: keymaps
+  size: 1
+  alias: keymap
+permalink: "/keymaps/{{ keymap.id }}/index.html"
+eleventyComputed:
+  title: "{{ keymap.keyboard }} - {{ keymap.keymapName }}"
+---
+
+<h2>{{ keymap.keyboard }} - {{ keymap.keymapName }}</h2>
+
+<p class="stats">
+  <strong>{{ keymap.layers.length }} layers</strong> with <strong>{{ keymap.allSymbols.length }} unique symbols</strong>
+</p>
+
+<nav style="margin: 2rem 0;">
+  <a href="#diagrams" class="button">Layer Diagrams</a>
+  <a href="#symbols" class="button">Symbol Index</a>
+  <a href="/" class="button secondary">← Back to Home</a>
+</nav>
+
+<section id="diagrams" class="layer-diagrams">
+  <h3>Layer Diagrams</h3>
+
+  {% for layer in keymap.layers %}
+    <div class="layer">
+      <h4>Layer: {{ layer.name }}</h4>
+      {% set svgPath = keymap.svgPaths | find('name', layer.name) %}
+      {% if svgPath %}
+        <div class="svg-container">
+          <object data="{{ svgPath.path }}" type="image/svg+xml" style="width: 100%; max-width: 1200px;">
+            <img src="{{ svgPath.path }}" alt="{{ layer.name }} layer diagram" />
+          </object>
+        </div>
+      {% else %}
+        <p><em>SVG diagram not available for this layer.</em></p>
+      {% endif %}
+
+      <details style="margin-top: 1rem;">
+        <summary>Layer details ({{ layer.keys.length }} keys, {{ layer.symbols.length }} symbols)</summary>
+        <p style="margin-top: 1rem;">This layer defines {{ layer.symbols.length }} accessible symbols/keys.</p>
+      </details>
+    </div>
+  {% endfor %}
+</section>
+
+<section id="symbols" class="symbol-tables">
+  <h3>Symbol Index</h3>
+
+  <p>Find any symbol and see how to type it on this keyboard. Symbols are organized by category for easy reference.</p>
+
+  {% include "partials/symbol-table.njk" %}
+</section>

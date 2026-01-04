@@ -1,0 +1,103 @@
+/**
+ * QMK Keymap Documentation Theme
+ * Light/Dark mode support using CSS custom properties
+ */
+
+:root {
+  /* Light mode colors (default) */
+  --color-bg: #ffffff;
+  --color-text: #1a1a1a;
+  --color-heading: #2c3e50;
+  --color-muted: #6c757d;
+  --color-border: #dee2e6;
+
+  /* Links and accents */
+  --color-link: #007bff;
+  --color-link-hover: #0056b3;
+  --color-accent: #007bff;
+
+  /* Buttons */
+  --color-primary: #007bff;
+  --color-primary-hover: #0056b3;
+  --color-secondary: #6c757d;
+  --color-secondary-hover: #5a6268;
+
+  /* Cards and surfaces */
+  --color-card-bg: #f8f9fa;
+  --color-layer-bg: #ffffff;
+
+  /* Tables */
+  --color-table-bg: #ffffff;
+  --color-table-header-bg: #e9ecef;
+  --color-table-border: #dee2e6;
+  --color-table-row-hover: #f8f9fa;
+
+  /* Code blocks */
+  --color-code-bg: #f8f9fa;
+  --color-code-text: #e83e8c;
+
+  /* SVG diagram colors */
+  --svg-filter: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark mode colors */
+    --color-bg: #1a1a1a;
+    --color-text: #e9ecef;
+    --color-heading: #f8f9fa;
+    --color-muted: #adb5bd;
+    --color-border: #495057;
+
+    /* Links and accents */
+    --color-link: #66b3ff;
+    --color-link-hover: #99ccff;
+    --color-accent: #66b3ff;
+
+    /* Buttons */
+    --color-primary: #0d6efd;
+    --color-primary-hover: #0a58ca;
+    --color-secondary: #6c757d;
+    --color-secondary-hover: #5a6268;
+
+    /* Cards and surfaces */
+    --color-card-bg: #212529;
+    --color-layer-bg: #2b3035;
+
+    /* Tables */
+    --color-table-bg: #212529;
+    --color-table-header-bg: #343a40;
+    --color-table-border: #495057;
+    --color-table-row-hover: #2c3136;
+
+    /* Code blocks */
+    --color-code-bg: #2d3238;
+    --color-code-text: #ff6b9d;
+
+    /* SVG diagram theming - invert colors for dark mode */
+    --svg-filter: invert(0.9) hue-rotate(180deg);
+  }
+}
+
+/* Force dark mode for testing - uncomment to test */
+/*
+:root {
+  color-scheme: dark;
+}
+*/
+
+/* SVG theming */
+svg,
+object[type="image/svg+xml"] {
+  filter: var(--svg-filter);
+}
+
+/* Ensure smooth transitions when switching themes */
+* {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Prevent transition on page load */
+.preload * {
+  transition: none !important;
+}
