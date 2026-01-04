@@ -1,0 +1,34 @@
+---
+layout: layouts/base.njk
+title: Home
+---
+
+<h2>QMK Keymaps</h2>
+
+<p>Browse visual documentation and comprehensive symbol tables for all configured QMK keymaps.</p>
+
+  {% if keymaps.length > 0 %}
+    <h2>Available Keymaps</h2>
+
+  {% for keymap in keymaps %}
+    <div class="keyboard-group">
+      <h3>{{ keymap.keyboard }}</h3>
+      <p><strong>Keymap:</strong> {{ keymap.keymapName }}</p>
+
+      <a href="/keymaps/{{ keymap.id }}/index.html" class="button">View Keymap Documentation</a>
+
+      <div class="stats">
+        <p>
+          <strong>Layers:</strong> {{ keymap.layers | length }}
+          ({% for layer in keymap.layers %}{{ layer.name }}{% if not loop.last %}, {% endif %}{% endfor %})
+        </p>
+        <p>
+          <strong>Unique Symbols:</strong> {{ keymap.allSymbols.length }} symbols and keys documented
+        </p>
+      </div>
+    </div>
+  {% endfor %}
+
+{% else %}
+  <p><em>No keymaps found. Make sure you have layout.yaml files in your keyboards/ directory.</em></p>
+{% endif %}

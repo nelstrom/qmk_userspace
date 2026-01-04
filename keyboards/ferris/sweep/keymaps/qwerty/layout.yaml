@@ -1,0 +1,47 @@
+layout:
+  qmk_keyboard: ferris/sweep
+  layout_name: LAYOUT_split_3x5_2
+layers:
+  BASE:
+    - [q, w, e, r, t, y, u, i, o, p]
+    - [a, s, {h: Gui, t: d}, {h: Ctrl, t: f}, g, h, {h: Ctrl, t: j}, {h: Gui, t: k}, l, ";"]
+    - [z, x, c, v, b, n, m, Repeat, ., /]
+    - [{t: TO(NAV)}, {t: OSM Shift}, {t: OSM Alt}, Space]
+  BASE_SHIFT:
+    - [Q, W, E, R, T, Y, U, I, O, P]
+    - [A, S, {h: Gui, t: D}, {h: Ctrl, t: F}, G, H, {h: Ctrl, t: J}, {h: Gui, t: K}, L, ":"]
+    - [Z, X, C, V, B, N, M, "Alt Repeat", ",", "?"]
+    - [{t: TO(NAV)}, {type: held}, {t: OSM Alt}, Space]
+  BASE_ALT:
+    - [Esc, "@", "#", "$", "%", "^", "&", "*", "-", BSpace]
+    - [Tab, "`", "'", '"', null, "\\", "[", "|", "]", Enter]
+    - ["~", "-", "+", "=", "_", null, "(", null, ")", "Del Word"]
+    - [{t: TO(NAV)}, {t: OSM Shift}, {type: held}, Space]
+  BASE_SHIFT_ALT:
+    - [null, "€", null, "£", null, null, null, null, null, null]
+    - [null, null, null, null, null, null, "{", "!", "}", null]
+    - [null, "“", "‘", "’", "”", null, "<", null, ">", null]
+    - [{t: TO(NAV)}, {type: held}, {type: held}, Space]
+  NAV:
+    - [Esc, "KP_7", "KP_8", "KP_9", null, "Cmd+[", "Ctrl+Shift+Tab", "Ctrl+Tab", "Cmd+]", BSpace]
+    - [Tab, "KP_4", {h: Gui, t: "KP_5"}, {h: Ctrl, t: "KP_6"}, null, Left, {h: Ctrl, t: Down}, {h: Gui, t: Up}, Right, Enter]
+    - ["KP_0", "KP_1", "KP_2", "KP_3", null, null, null, Repeat, ".", null]
+    - [{t: TO(SYMBOL)}, Trans, Trans, {t: TO(BASE)}]
+  ALT_NAV:
+    - [Esc, F7, F8, F9, null, "Cmd+[", "Ctrl+Shift+Tab", "Ctrl+Tab", "Cmd+]", BSpace]
+    - [Tab, F4, {h: Gui, t: F5}, {h: Ctrl, t: F6}, null, Left, {h: Ctrl, t: Down}, {h: Gui, t: Up}, Right, Enter]
+    - [F10, F1, F2, F3, null, null, null, Repeat, ".", null]
+    - [{t: TO(SYMBOL)}, Trans, {type: held}, {t: TO(BASE)}]
+  SYMBOL:
+    - ["œ", "∑", "´", "®", "†", "¥", "¨", "ˆ", "ø", "π"]
+    - ["å", "ß", "∂", "ƒ", "©", "˙", "∆", "˚", "¬", "…"]
+    - ["Ω", "≈", "ç", "√", "∫", "~", "µ", "≤", "≥", "÷"]
+    - [{t: TO(BASE)}, Trans, Trans, {t: TO(BASE)}]
+  SHIFT_SYMBOL:
+    - ["Œ", "„", "‰", "Â", "Ê", "Á", "Ë", "ˆ", "Ø", "∏"]
+    - ["Å", "Í", "Î", "Ï", "Ì", "Ó", "Ô", "", "Ò", "Ú"]
+    - ["Û", "Ù", "Ç", "◊", "ı", "ˆ", "˜", "¯", "˘", "¿"]
+    - [{t: TO(BASE)}, {type: held}, Trans, {t: TO(BASE)}]
+combos:
+  - {p: [0, 1], k: "Esc+Tab combo", l: ["BASE"], a: top}
+  - {p: [8, 9], k: "Special combo", l: ["BASE"], a: top}
