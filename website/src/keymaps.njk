@@ -18,7 +18,7 @@ eleventyComputed:
 <nav style="margin: 2rem 0;">
   <a href="#diagrams" class="button">Layer Diagrams</a>
   <a href="#symbols" class="button">Symbol Index</a>
-  <a href="/" class="button secondary">← Back to Home</a>
+  <a href="{{ '/' | url }}" class="button secondary">← Back to Home</a>
 </nav>
 
 <section id="diagrams" class="layer-diagrams">
@@ -30,8 +30,8 @@ eleventyComputed:
       {% set svgPath = keymap.svgPaths | find('name', layer.name) %}
       {% if svgPath %}
         <div class="svg-container">
-          <object data="{{ svgPath.path }}" type="image/svg+xml" style="width: 100%; max-width: 1200px;">
-            <img src="{{ svgPath.path }}" alt="{{ layer.name }} layer diagram" />
+          <object data="{{ svgPath.path | url }}" type="image/svg+xml" style="width: 100%; max-width: 1200px;">
+            <img src="{{ svgPath.path | url }}" alt="{{ layer.name }} layer diagram" />
           </object>
         </div>
       {% else %}
