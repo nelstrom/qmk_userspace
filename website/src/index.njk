@@ -15,7 +15,7 @@ title: Home
       <h3>{{ keymap.keyboard }}</h3>
       <p><strong>Keymap:</strong> {{ keymap.keymapName }}</p>
 
-      <a href="/keymaps/{{ keymap.id }}/index.html" class="button">View Keymap Documentation</a>
+      <a href="{{ ('/keymaps/' + keymap.id + '/') | url }}" class="button">View Keymap Documentation</a>
 
       <div class="stats">
         <p>
