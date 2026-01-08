@@ -19,7 +19,7 @@ layers:
     - [{t: TO(NAV)}, {t: OSM Shift}, {type: held}, Space]
   BASE_SHIFT_ALT:
     - [null, "€", null, "£", null, null, null, null, null, null]
-    - [null, null, null, null, null, null, "{", "!", "}", null]
+    - [null, null, null, null, null, null, "{", "!", "}", "Shift+Enter"]
     - [null, "“", "‘", "’", "”", null, "<", null, ">", null]
     - [{t: TO(NAV)}, {type: held}, {type: held}, Space]
   NAV:
@@ -45,3 +45,4 @@ layers:
 combos:
   - {p: [0, 1], k: "Esc+Tab combo", l: ["BASE"], a: top}
   - {p: [8, 9], k: "Special combo", l: ["BASE"], a: top}
+
