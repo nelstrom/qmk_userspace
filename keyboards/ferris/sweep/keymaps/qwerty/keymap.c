@@ -75,8 +75,9 @@ const key_override_t slsh_key_alt_override = ko_make_with_layers_and_negmods(MOD
 const key_override_t slsh_key_alt_shifted_override = ko_make_with_layers(MOD_MASK_SA, KC_SLSH, KC_NO, QWERTY_LAYERS);
 
 // Alt+key on QWERTY layer 0 outputs symbols (from old layer 1)
+// These overrides don't trigger when Ctrl, Shift, or Command is held, allowing Cmd+Alt+key shortcuts to pass through to macOS
 // Top row
-const key_override_t q_key_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_ALT, KC_Q, KC_ESC, QWERTY_LAYERS, MOD_MASK_SHIFT);
+const key_override_t q_key_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_ALT, KC_Q, KC_ESC, QWERTY_LAYERS, MOD_MASK_CSG);
 const key_override_t w_key_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_ALT, KC_W, KC_AT, QWERTY_LAYERS, MOD_MASK_CSG);
 const key_override_t e_key_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_ALT, KC_E, KC_UK_HASH, QWERTY_LAYERS, MOD_MASK_CSG);
 const key_override_t r_key_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_ALT, KC_R, KC_DOLLAR, QWERTY_LAYERS, MOD_MASK_CSG);
@@ -84,58 +85,59 @@ const key_override_t t_key_alt_override = ko_make_with_layers_and_negmods(MOD_MA
 const key_override_t y_key_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_ALT, KC_Y, KC_CIRCUMFLEX, QWERTY_LAYERS, MOD_MASK_CSG);
 const key_override_t u_key_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_ALT, KC_U, KC_AMPERSAND, QWERTY_LAYERS, MOD_MASK_CSG);
 const key_override_t i_key_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_ALT, KC_I, KC_ASTERISK, QWERTY_LAYERS, MOD_MASK_CSG);
-const key_override_t o_key_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_ALT, KC_O, KC_MINUS, QWERTY_LAYERS, MOD_MASK_SHIFT);
+const key_override_t o_key_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_ALT, KC_O, KC_MINUS, QWERTY_LAYERS, MOD_MASK_CSG);
 
 // Middle row
-const key_override_t a_key_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_ALT, KC_A, KC_TAB, QWERTY_LAYERS, MOD_MASK_SHIFT);
-const key_override_t s_key_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_ALT, KC_S, KC_GRAVE, QWERTY_LAYERS, MOD_MASK_SHIFT);
+const key_override_t a_key_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_ALT, KC_A, KC_TAB, QWERTY_LAYERS, MOD_MASK_CSG);
+const key_override_t s_key_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_ALT, KC_S, KC_GRAVE, QWERTY_LAYERS, MOD_MASK_CSG);
 // D, F, J, K handled in process_record_user() due to mod-tap interference
-const key_override_t g_key_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_ALT, KC_G, KC_NO, QWERTY_LAYERS, MOD_MASK_SHIFT);
-const key_override_t h_key_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_ALT, KC_H, KC_BACKSLASH, QWERTY_LAYERS, MOD_MASK_SHIFT);
-const key_override_t l_key_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_ALT, KC_L, KC_RBRC, QWERTY_LAYERS, MOD_MASK_SHIFT);
+const key_override_t g_key_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_ALT, KC_G, KC_NO, QWERTY_LAYERS, MOD_MASK_CSG);
+const key_override_t h_key_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_ALT, KC_H, KC_BACKSLASH, QWERTY_LAYERS, MOD_MASK_CSG);
+const key_override_t l_key_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_ALT, KC_L, KC_RBRC, QWERTY_LAYERS, MOD_MASK_CSG);
 
 // Bottom row
 const key_override_t z_key_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_ALT, KC_Z, KC_TILDE, QWERTY_LAYERS, MOD_MASK_CSG);
-const key_override_t x_key_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_ALT, KC_X, KC_MINUS, QWERTY_LAYERS, MOD_MASK_SHIFT);
+const key_override_t x_key_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_ALT, KC_X, KC_MINUS, QWERTY_LAYERS, MOD_MASK_CSG);
 const key_override_t c_key_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_ALT, KC_C, KC_PLUS, QWERTY_LAYERS, MOD_MASK_CSG);
-const key_override_t v_key_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_ALT, KC_V, KC_EQUAL, QWERTY_LAYERS, MOD_MASK_SHIFT);
+const key_override_t v_key_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_ALT, KC_V, KC_EQUAL, QWERTY_LAYERS, MOD_MASK_CSG);
 const key_override_t b_key_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_ALT, KC_B, KC_UNDERSCORE, QWERTY_LAYERS, MOD_MASK_CSG);
 const key_override_t m_key_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_ALT, KC_M, KC_LPRN, QWERTY_LAYERS, MOD_MASK_CSG);
 const key_override_t dot_key_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_ALT, KC_DOT, KC_RPRN, QWERTY_LAYERS, MOD_MASK_CSG);
 
 // Shift+Alt+key on QWERTY layer 0 (shifted symbols from old layer 1)
+// These overrides don't trigger when Command is held, allowing Cmd+Shift+Alt+key shortcuts to pass through to macOS
 // Top row
-const key_override_t q_key_shift_alt_override = ko_make_with_layers(MOD_MASK_SA, KC_Q, KC_NO, QWERTY_LAYERS);
-const key_override_t w_key_shift_alt_override = ko_make_with_layers(MOD_MASK_SA, KC_W, KC_EURO, QWERTY_LAYERS);
-const key_override_t e_key_shift_alt_override = ko_make_with_layers(MOD_MASK_SA, KC_E, KC_NO, QWERTY_LAYERS);
-const key_override_t r_key_shift_alt_override = ko_make_with_layers(MOD_MASK_SA, KC_R, KC_UK_POUND, QWERTY_LAYERS);
-const key_override_t t_key_shift_alt_override = ko_make_with_layers(MOD_MASK_SA, KC_T, KC_NO, QWERTY_LAYERS);
-const key_override_t y_key_shift_alt_override = ko_make_with_layers(MOD_MASK_SA, KC_Y, KC_NO, QWERTY_LAYERS);
-const key_override_t u_key_shift_alt_override = ko_make_with_layers(MOD_MASK_SA, KC_U, KC_NO, QWERTY_LAYERS);
-const key_override_t i_key_shift_alt_override = ko_make_with_layers(MOD_MASK_SA, KC_I, KC_NO, QWERTY_LAYERS);
-const key_override_t o_key_shift_alt_override = ko_make_with_layers(MOD_MASK_SA, KC_O, KC_NO, QWERTY_LAYERS);
-const key_override_t p_key_shift_alt_override = ko_make_with_layers(MOD_MASK_SA, KC_P, KC_NO, QWERTY_LAYERS);
+const key_override_t q_key_shift_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_SA, KC_Q, KC_NO, QWERTY_LAYERS, MOD_MASK_GUI);
+const key_override_t w_key_shift_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_SA, KC_W, KC_EURO, QWERTY_LAYERS, MOD_MASK_GUI);
+const key_override_t e_key_shift_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_SA, KC_E, KC_NO, QWERTY_LAYERS, MOD_MASK_GUI);
+const key_override_t r_key_shift_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_SA, KC_R, KC_UK_POUND, QWERTY_LAYERS, MOD_MASK_GUI);
+const key_override_t t_key_shift_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_SA, KC_T, KC_NO, QWERTY_LAYERS, MOD_MASK_GUI);
+const key_override_t y_key_shift_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_SA, KC_Y, KC_NO, QWERTY_LAYERS, MOD_MASK_GUI);
+const key_override_t u_key_shift_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_SA, KC_U, KC_NO, QWERTY_LAYERS, MOD_MASK_GUI);
+const key_override_t i_key_shift_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_SA, KC_I, KC_NO, QWERTY_LAYERS, MOD_MASK_GUI);
+const key_override_t o_key_shift_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_SA, KC_O, KC_NO, QWERTY_LAYERS, MOD_MASK_GUI);
+const key_override_t p_key_shift_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_SA, KC_P, KC_NO, QWERTY_LAYERS, MOD_MASK_GUI);
 
 // Middle row
-const key_override_t a_key_shift_alt_override = ko_make_with_layers(MOD_MASK_SA, KC_A, KC_NO, QWERTY_LAYERS);
-const key_override_t s_key_shift_alt_override = ko_make_with_layers(MOD_MASK_SA, KC_S, KC_NO, QWERTY_LAYERS);
+const key_override_t a_key_shift_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_SA, KC_A, KC_NO, QWERTY_LAYERS, MOD_MASK_GUI);
+const key_override_t s_key_shift_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_SA, KC_S, KC_NO, QWERTY_LAYERS, MOD_MASK_GUI);
 // D, F, J, K handled in process_record_user() due to mod-tap interference
-const key_override_t g_key_shift_alt_override = ko_make_with_layers(MOD_MASK_SA, KC_G, KC_NO, QWERTY_LAYERS);
-const key_override_t h_key_shift_alt_override = ko_make_with_layers(MOD_MASK_SA, KC_H, KC_NO, QWERTY_LAYERS);
-const key_override_t l_key_shift_alt_override = ko_make_with_layers(MOD_MASK_SA, KC_L, KC_RCBR, QWERTY_LAYERS);
-const key_override_t scln_key_shift_alt_override = ko_make_with_layers(MOD_MASK_SA, KC_SCLN, KC_NO, QWERTY_LAYERS);
+const key_override_t g_key_shift_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_SA, KC_G, KC_NO, QWERTY_LAYERS, MOD_MASK_GUI);
+const key_override_t h_key_shift_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_SA, KC_H, KC_NO, QWERTY_LAYERS, MOD_MASK_GUI);
+const key_override_t l_key_shift_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_SA, KC_L, KC_RCBR, QWERTY_LAYERS, MOD_MASK_GUI);
+const key_override_t scln_key_shift_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_SA, KC_SCLN, KC_NO, QWERTY_LAYERS, MOD_MASK_GUI);
 
 // Bottom row
-const key_override_t z_key_shift_alt_override = ko_make_with_layers(MOD_MASK_SA, KC_Z, KC_NO, QWERTY_LAYERS);
-const key_override_t x_key_shift_alt_override = ko_make_with_layers(MOD_MASK_SA, KC_X, KC_DOUBLE_QUOTE_OPEN, QWERTY_LAYERS);
-const key_override_t c_key_shift_alt_override = ko_make_with_layers(MOD_MASK_SA, KC_C, KC_SINGLE_QUOTE_OPEN, QWERTY_LAYERS);
-const key_override_t v_key_shift_alt_override = ko_make_with_layers(MOD_MASK_SA, KC_V, KC_SINGLE_QUOTE_CLOSE, QWERTY_LAYERS);
-const key_override_t b_key_shift_alt_override = ko_make_with_layers(MOD_MASK_SA, KC_B, KC_DOUBLE_QUOTE_CLOSE, QWERTY_LAYERS);
-const key_override_t n_key_shift_alt_override = ko_make_with_layers(MOD_MASK_SA, KC_N, KC_NO, QWERTY_LAYERS);
-const key_override_t m_key_shift_alt_override = ko_make_with_layers(MOD_MASK_SA, KC_M, KC_LABK, QWERTY_LAYERS);
-const key_override_t comma_key_shift_alt_override = ko_make_with_layers(MOD_MASK_SA, KC_COMMA, KC_NO, QWERTY_LAYERS);
-const key_override_t dot_key_shift_alt_override = ko_make_with_layers(MOD_MASK_SA, KC_DOT, KC_RABK, QWERTY_LAYERS);
-const key_override_t slsh_key_shift_alt_override = ko_make_with_layers(MOD_MASK_SA, KC_SLSH, KC_NO, QWERTY_LAYERS);
+const key_override_t z_key_shift_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_SA, KC_Z, KC_NO, QWERTY_LAYERS, MOD_MASK_GUI);
+const key_override_t x_key_shift_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_SA, KC_X, KC_DOUBLE_QUOTE_OPEN, QWERTY_LAYERS, MOD_MASK_GUI);
+const key_override_t c_key_shift_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_SA, KC_C, KC_SINGLE_QUOTE_OPEN, QWERTY_LAYERS, MOD_MASK_GUI);
+const key_override_t v_key_shift_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_SA, KC_V, KC_SINGLE_QUOTE_CLOSE, QWERTY_LAYERS, MOD_MASK_GUI);
+const key_override_t b_key_shift_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_SA, KC_B, KC_DOUBLE_QUOTE_CLOSE, QWERTY_LAYERS, MOD_MASK_GUI);
+const key_override_t n_key_shift_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_SA, KC_N, KC_NO, QWERTY_LAYERS, MOD_MASK_GUI);
+const key_override_t m_key_shift_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_SA, KC_M, KC_LABK, QWERTY_LAYERS, MOD_MASK_GUI);
+const key_override_t comma_key_shift_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_SA, KC_COMMA, KC_NO, QWERTY_LAYERS, MOD_MASK_GUI);
+const key_override_t dot_key_shift_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_SA, KC_DOT, KC_RABK, QWERTY_LAYERS, MOD_MASK_GUI);
+const key_override_t slsh_key_shift_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_SA, KC_SLSH, KC_NO, QWERTY_LAYERS, MOD_MASK_GUI);
 
 const key_override_t delete_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_BSPC, KC_DEL);
 const key_override_t period_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_DOT, KC_COMM);
@@ -407,7 +409,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
 
         // Handle Shift+Alt+homerow mod-tap keys
-        if (alt_held && shift_held) {
+        // Don't trigger when Command is held, to allow Cmd+Shift+Alt+key shortcuts
+        if (alt_held && shift_held && !(all_mods & MOD_MASK_GUI)) {
             uint8_t temp_mods = get_mods();
 
             switch(keycode) {
