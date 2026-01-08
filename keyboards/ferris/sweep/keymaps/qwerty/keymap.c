@@ -62,9 +62,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // All layers are QWERTY layers (0, 1, 2)
 #define QWERTY_LAYERS ~0
 
-// QWERTY: alt ; = enter, shift+alt ; = noop
+// QWERTY: alt ; = enter, shift+alt ; = shift+enter
 const key_override_t semicolon_key_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_ALT, KC_SCLN, KC_ENTER, QWERTY_LAYERS, MOD_MASK_SHIFT);
-const key_override_t semicolon_key_alt_shifted_override = ko_make_with_layers(MOD_MASK_SA, KC_SCLN, KC_NO, QWERTY_LAYERS);
+const key_override_t semicolon_key_alt_shifted_override = ko_make_with_layers(MOD_MASK_SA, KC_SCLN, LSFT(KC_ENTER), QWERTY_LAYERS);
 
 // QWERTY: alt p = backspace, shift+alt p = noop
 const key_override_t p_key_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_ALT, KC_P, KC_BSPC, QWERTY_LAYERS, MOD_MASK_SHIFT);
