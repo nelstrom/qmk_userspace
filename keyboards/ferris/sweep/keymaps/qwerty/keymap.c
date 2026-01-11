@@ -119,7 +119,7 @@ const key_override_t o_key_shift_alt_override = ko_make_with_layers_and_negmods(
 const key_override_t p_key_shift_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_SA, KC_P, KC_NO, QWERTY_LAYERS, MOD_MASK_GUI);
 
 // Middle row
-const key_override_t a_key_shift_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_SA, KC_A, KC_NO, QWERTY_LAYERS, MOD_MASK_GUI);
+const key_override_t a_key_shift_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_SA, KC_A, LSFT(KC_TAB), QWERTY_LAYERS, MOD_MASK_GUI);
 const key_override_t s_key_shift_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_SA, KC_S, KC_NO, QWERTY_LAYERS, MOD_MASK_GUI);
 // D, F, J, K handled in process_record_user() due to mod-tap interference
 const key_override_t g_key_shift_alt_override = ko_make_with_layers_and_negmods(MOD_MASK_SA, KC_G, KC_NO, QWERTY_LAYERS, MOD_MASK_GUI);
@@ -437,6 +437,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
             // Handle Shift+Alt+key repeat behavior for non-homerow keys
             switch(keycode) {
+                case KC_A:  // Shift+Alt+A → Shift+Tab
+                    set_last_keycode(KC_TAB);
+                    set_last_mods(MOD_BIT(KC_LSFT));
+                    break;
                 case KC_W:  // Shift+Alt+W → € (Alt+2 on macOS)
                     set_last_keycode(KC_2);
                     set_last_mods(MOD_BIT(KC_LALT));
