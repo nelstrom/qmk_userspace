@@ -42,7 +42,13 @@ layers:
     - ["Å", "Í", "Î", "Ï", "Ì", "Ó", "Ô", "", "Ò", "Ú"]
     - ["Û", "Ù", "Ç", "◊", "ı", "ˆ", "˜", "¯", "˘", "¿"]
     - [{t: TO(BASE)}, {type: held}, Trans, {t: TO(BASE)}]
+  MOUSE:
+    - ["Cmd+1", "Cmd+2", "Cmd+3", "Cmd+4", "Cmd+5", "Scroll ←", "Scroll ↓", "Scroll ↑", "Scroll →", null]
+    - ["Tab (Cmd+Tab w/D)", "Cmd+Shift+Tab", {h: Cmd, t: "Cmd+`"}, "Cmd+Shift+`", "Ctrl+Down", "Mouse ←", "Mouse ↓", "Mouse ↑", "Mouse →", null]
+    - ["Cmd+[", "Cmd+]", "Cmd+Shift+[", "Cmd+Shift+]", null, null, "Left Click", Repeat, "Right Click", null]
+    - [{type: held}, {type: held}, Trans, Trans]
 combos:
   - {p: [0, 1], k: "Esc+Tab combo", l: ["BASE"], a: top}
   - {p: [8, 9], k: "Special combo", l: ["BASE"], a: top}
   - {p: [12, 17, 33], k: "Cmd+Space (Spotlight)", l: ["BASE"], a: top}
+  - {p: [30, 31], k: "MOUSE layer (hold both left thumbs)", l: ["BASE"], a: top}

@@ -14,6 +14,12 @@
 #define KC_NAV_PREV_TAB LCTL(LSFT(KC_TAB))
 #define KC_NAV_NEXT_TAB RCTL(KC_TAB)
 
+// Custom keycodes for MOUSE layer
+enum custom_keycodes {
+    CMD_GRV = SAFE_RANGE,  // Cmd+` for window switching
+    MT_CMD_GRV             // Mod-tap: tap=Cmd+`, hold=Cmd
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[0] = LAYOUT_split_3x5_2(
         KC_Q, KC_W, KC_E, KC_R, KC_T,
@@ -55,6 +61,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
         TO(0), KC_TRNS,
         KC_TRNS, TO(0)
+    ),
+    // MOUSE layer - one-handed commands and mouse control
+    // Activated by holding both left thumb keys together
+    // Left hand: D = mod-tap (tap=Cmd+`, hold=Cmd), pre-chorded shortcuts
+    [3] = LAYOUT_split_3x5_2(
+        LGUI(KC_1), LGUI(KC_2), LGUI(KC_3), LGUI(KC_4), LGUI(KC_5),
+        MS_WHLL, MS_WHLD, MS_WHLU, MS_WHLR, KC_NO,
+
+        KC_TAB, LGUI(LSFT(KC_TAB)), MT_CMD_GRV, LGUI(LSFT(KC_GRAVE)), LCTL(KC_DOWN),
+        MS_LEFT, MS_DOWN, MS_UP, MS_RGHT, KC_NO,
+
+        LGUI(KC_LBRC), LGUI(KC_RBRC), LGUI(LSFT(KC_LBRC)), LGUI(LSFT(KC_RBRC)), KC_NO,
+        KC_NO, MS_BTN1, QK_REPEAT_KEY, MS_BTN2, KC_NO,
+
+        KC_TRNS, KC_TRNS,
+        KC_TRNS, KC_TRNS
     )
 };
 
@@ -247,9 +269,11 @@ const key_override_t *key_overrides[] = {
 
 const uint16_t PROGMEM qwerty_combo[] = {KC_ESC, KC_TAB, KC_BSPC, COMBO_END};
 const uint16_t PROGMEM spotlight_combo[] = {MT(MOD_LGUI, KC_D), MT(MOD_RGUI, KC_K), KC_SPACE, COMBO_END};
+const uint16_t PROGMEM mouse_layer_combo[] = {TO(1), OSM(MOD_LSFT), COMBO_END};
 combo_t key_combos[] = {
     COMBO(qwerty_combo, TO(0)),
-    COMBO(spotlight_combo, LGUI(KC_SPACE))
+    COMBO(spotlight_combo, LGUI(KC_SPACE)),
+    COMBO(mouse_layer_combo, MO(3))  // Hold both left thumbs for MOUSE layer
 };
 
 #if defined(ENCODER_ENABLE) && defined(ENCODER_MAP_ENABLE)
@@ -265,6 +289,27 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 // Custom handling for Alt+homerow mod-tap keys
 // Key overrides don't work with mod-tap keys, so we handle them manually
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    // Handle custom mod-tap for MOUSE layer
+    static bool mt_cmd_grv_held = false;
+    static uint16_t mt_cmd_grv_timer = 0;
+
+    switch (keycode) {
+        case MT_CMD_GRV:
+            if (record->event.pressed) {
+                mt_cmd_grv_held = true;
+                mt_cmd_grv_timer = timer_read();
+                register_mods(MOD_BIT(KC_LGUI));  // Activate Command immediately for hold
+            } else {
+                unregister_mods(MOD_BIT(KC_LGUI));
+                if (mt_cmd_grv_held && timer_elapsed(mt_cmd_grv_timer) < TAPPING_TERM) {
+                    // It was a tap - send Cmd+`
+                    tap_code16(LGUI(KC_GRAVE));
+                }
+                mt_cmd_grv_held = false;
+            }
+            return false;
+    }
+
     // Check which modifiers are active (including one-shot modifiers)
     uint8_t mods = get_mods();
     uint8_t oneshot_mods = get_oneshot_mods();
